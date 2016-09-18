@@ -45,7 +45,7 @@ Enum.each(Slack.Web.get_documentation, fn({module_name, functions}) ->
         |> Keyword.put_new(:token, Application.get_env(:slack, :api_token))
 
         %{body: body} = HTTPoison.post!(
-          "https://slack.com/api/#{unquote(doc.endpoint)}",
+          "#{Application.get_env(:slack, :api_url)}/#{unquote(doc.endpoint)}",
           {:form, params}
         )
 
